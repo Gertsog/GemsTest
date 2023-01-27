@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumTests", "SeleniumTests\SeleniumTests.csproj", "{7F69F0B6-7B72-4387-AA10-11E4388DBAF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumTests", "SeleniumTests\SeleniumTests.csproj", "{7F69F0B6-7B72-4387-AA10-11E4388DBAF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquationSolver", "EquationSolver\EquationSolver.csproj", "{1F1DF2CC-6B97-43EA-BF53-8580D1FEE8AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquationSolver", "EquationSolver\EquationSolver.csproj", "{1F1DF2CC-6B97-43EA-BF53-8580D1FEE8AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquationSolver.Tests", "EquationSolver.Tests\EquationSolver.Tests.csproj", "{C94E881B-3170-421E-8DB4-8EAC3FF6F249}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquationSolver.Tests", "EquationSolver.Tests\EquationSolver.Tests.csproj", "{C94E881B-3170-421E-8DB4-8EAC3FF6F249}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMerging", "ImageMerging\ImageMerging.csproj", "{1007B650-7E78-49DB-A325-A775EB12635C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{C94E881B-3170-421E-8DB4-8EAC3FF6F249}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C94E881B-3170-421E-8DB4-8EAC3FF6F249}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C94E881B-3170-421E-8DB4-8EAC3FF6F249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1007B650-7E78-49DB-A325-A775EB12635C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1007B650-7E78-49DB-A325-A775EB12635C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1007B650-7E78-49DB-A325-A775EB12635C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1007B650-7E78-49DB-A325-A775EB12635C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
