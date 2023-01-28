@@ -7,7 +7,7 @@ namespace SeleniumTests
     public class SeleniumTests
     {
         [Fact]
-        public void TestSections()
+        public void VerifySectionsName()
         {
             using IWebDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://gemsdev.ru/");
@@ -27,7 +27,7 @@ namespace SeleniumTests
         }
 
         [Fact]
-        public void TestLink()
+        public void VerifyElementLink()
         {
             using IWebDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://gemsdev.ru/");
