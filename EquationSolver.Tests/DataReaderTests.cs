@@ -1,4 +1,5 @@
 ﻿using EquationSolver.Parsers;
+using Xunit;
 
 namespace EquationSolver.Tests
 {
@@ -6,7 +7,7 @@ namespace EquationSolver.Tests
     {
         //Я не смог адекватно получить доступ к папке с тестовыми файлами
         private static readonly string _testFilesDirectory1 =
-            Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\TestFiles\\";
+            Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName + "\\TestFiles\\";
         private static readonly string _testFilesDirectory2 = _testFilesDirectory1.Replace('\\', '/');
 
         private static readonly List<double[]> _correctQuadricEquationParsingResult = new List<double[]>() 

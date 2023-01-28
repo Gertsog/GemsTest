@@ -1,4 +1,5 @@
 ﻿using EquationSolver.Solvers;
+using Xunit;
 
 namespace EquationSolver.Tests
 {
