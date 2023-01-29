@@ -12,8 +12,14 @@ namespace ImageMerging
     */
     public class Program
     {
-        const int DefaultImageHeight = 600;
-        const int DefaultImageWidth = 800;
+        const int DefaultImageHeight = 320;
+        const int DefaultImageWidth = 320;
+
+        //Вроде как максимальный размер изображения 32к*32к
+        //Но при работе с изображением такого размера, у меня валится приложение
+        //Поэтому я уменьшил его вдвое
+        const int MaxImageHeight = 16000;
+        const int MaxImageWidth = 16000;
 
         private static void Main(string[] args)
         {
@@ -113,13 +119,31 @@ namespace ImageMerging
             var resultWidth = rowLength * imageSize.Item1;
             var resultHeigth = colLength * imageSize.Item2;
 
+            //Вычисление коэффициента уменьшения финального изображения
+            var reductionFactor = 1;
+            if (resultWidth > MaxImageWidth || resultHeigth > MaxImageHeight)
+            {
+                var widthIsCorrect = resultWidth <= MaxImageWidth;
+                var heightIsCorrect = resultHeigth <= MaxImageHeight;
+                while (!widthIsCorrect || !heightIsCorrect)
+                {
+                    reductionFactor *= 2;
+                    widthIsCorrect = resultWidth / reductionFactor <= MaxImageWidth;
+                    heightIsCorrect = resultHeigth / reductionFactor <= MaxImageHeight;
+                }
+
+                resultWidth /= reductionFactor;
+                resultHeigth /= reductionFactor;
+            }
+
             using var surface = SKSurface.Create(new SKImageInfo(resultWidth, resultHeigth));
             using var canvas = surface.Canvas;
             canvas.Clear(SKColors.White);
+
             foreach (var image in imageIndexes)
             {
-                var imageWidth = imageSize.Item1;
-                var imageHeight = imageSize.Item2;
+                var imageWidth = imageSize.Item1 / reductionFactor;
+                var imageHeight = imageSize.Item2 / reductionFactor;
                 var imageRowIndex = image.Value.Item1;
                 var imageColIndex = image.Value.Item2;
 
@@ -128,7 +152,15 @@ namespace ImageMerging
                 var offsetY = (imageColIndex - minColIndex) * imageHeight;
 
                 using var bitmap = SKBitmap.Decode(image.Key);
-                canvas.DrawBitmap(bitmap, SKRect.Create(offsetX, offsetY, imageWidth, imageHeight));
+                if (reductionFactor == 1)
+                {
+                    canvas.DrawBitmap(bitmap, SKRect.Create(offsetX, offsetY, imageWidth, imageHeight));
+                }
+                else
+                {
+                    using var scaledBitmap = bitmap.Resize(new SKImageInfo(imageWidth, imageHeight), SKFilterQuality.High);
+                    canvas.DrawBitmap(scaledBitmap, SKRect.Create(offsetX, offsetY, imageWidth, imageHeight));
+                }
             }
 
             return surface.Snapshot();
