@@ -28,10 +28,10 @@ namespace SeleniumTests
             var sectionsName = sections.Select(s => s.GetAttribute("textContent").Trim());
 
             Assert.Collection(sectionsName,
-                name => name.Equals("Geometa"),
-                name => name.Equals("√осударственна€ система обеспечени€ градостроительной де€тельности"),
-                name => name.Equals("√ородска€ аналитика"),
-                name => name.Equals("ƒругие наши продукты")
+                name => Assert.Equal("Geometa", name),
+                name => Assert.Equal("√осударственна€ система обеспечени€ градостроительной де€тельности", name),
+                name => Assert.Equal("√ородска€ аналитика", name),
+                name => Assert.Equal("ƒругие наши продукты", name)
             );
         }
 
