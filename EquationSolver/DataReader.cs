@@ -35,7 +35,6 @@ namespace EquationSolver
                                 result.Add(_argumentParser.Parse(line));
 
                         sr.Close();
-
                     }
                     catch (FormatException)
                     {

@@ -25,7 +25,7 @@ namespace SeleniumTests
             productsButton.Click();
 
             var sections = driver.FindElements(By.XPath("//*[self::h1 or self::h2]"));
-            var sectionsName = sections.Select(s => s.GetAttribute("textContent").Trim());
+            var sectionsName = sections.Select(s => s.GetAttribute("textContent").Trim()).ToArray();
 
             Assert.Collection(sectionsName,
                 name => Assert.Equal("Geometa", name),

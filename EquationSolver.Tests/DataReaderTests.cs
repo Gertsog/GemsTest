@@ -6,9 +6,11 @@ namespace EquationSolver.Tests
     public class DataReaderTests
     {
         //Я не смог адекватно получить доступ к папке с тестовыми файлами
-        private static readonly string _testFilesDirectory1 =
-            Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName + "\\TestFiles\\";
-        private static readonly string _testFilesDirectory2 = _testFilesDirectory1.Replace('\\', '/');
+        private static readonly string _parentDirectory = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName;
+        private static readonly string _testFilesDirectory = Path.Combine(_parentDirectory, "TestFiles");
+        private static readonly string _testFilePath1 = Path.Combine(_testFilesDirectory, "TestFile1.txt");
+        private static readonly string _testFilePath2 = Path.Combine(_testFilesDirectory, "TestFile2.txt");
+        private static readonly string _testFilePath3 = Path.Combine(_testFilesDirectory, "TestFile3.txt");
 
         private static readonly List<double[]> _correctQuadricEquationParsingResult = new List<double[]>() 
         {
@@ -22,15 +24,14 @@ namespace EquationSolver.Tests
         {
             new object[] { "1 2 3", new List<double[]>() { new double[] { 1, 2, 3 } } },
             new object[] { "-2 10 2", new List<double[]>() { new double[] { -2, 10, 2 } } },
-            new object[] { _testFilesDirectory2 + "TestFile1.txt", _correctQuadricEquationParsingResult },
-            new object[] { _testFilesDirectory1 + "TestFile1.txt", _correctQuadricEquationParsingResult },
-            new object[] { _testFilesDirectory1 + "TestFile2.txt", _correctQuadricEquationParsingResult },
-            new object[] { _testFilesDirectory1 + "TestFile3.txt", new List<double[]>() }
+            new object[] { _testFilePath1, _correctQuadricEquationParsingResult },
+            new object[] { _testFilePath2, _correctQuadricEquationParsingResult },
+            new object[] { _testFilePath3, new List<double[]>() }
         };
 
         public static IEnumerable<object[]> FileNotExistsTestData => new List<object[]>
         {
-            new object[] { _testFilesDirectory1 + "TestFile4.txt" }
+            new object[] { Path.Combine(_testFilesDirectory, "TestFile4.txt") }
         };
 
         [Theory]

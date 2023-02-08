@@ -73,7 +73,7 @@ namespace ImageMerging
             //Если в папке одно подходящее изображение, создаётся его копия
             if (imagePaths.Length == 1)
             {
-                using SKBitmap bitmap = SKBitmap.Decode(imagePaths[0]);
+                using var bitmap = SKBitmap.Decode(imagePaths[0]);
                 return SKImage.FromBitmap(bitmap);
             }
 
