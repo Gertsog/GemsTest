@@ -28,18 +28,16 @@ namespace EquationSolver
                 {
                     using var sr = new StreamReader(input);
                     var line = "";
-                    try
+                    while ((line = sr.ReadLine()) != null)
                     {
-                        while ((line = sr.ReadLine()) != null)
-                            if (line != "")
-                                result.Add(_argumentParser.Parse(line));
-
-                        sr.Close();
+                        if (line != "")
+                        {
+                            var arguments = ParseArgumentsFromString(line);
+                            result.Add(arguments);
+                        }
                     }
-                    catch (FormatException)
-                    {
-                        throw new FormatException($"Строка {line} содержит некорректные символы");
-                    }
+                            
+                    sr.Close();
                 }
                 catch (FileNotFoundException)
                 {
@@ -48,17 +46,23 @@ namespace EquationSolver
             }
             else
             {
-                try
-                {
-                    result.Add(_argumentParser.Parse(input));
-                }
-                catch (FormatException)
-                {
-                    throw new FormatException($"Строка {input} содержит некорректные символы");
-                }
+                var arguments = ParseArgumentsFromString(input);
+                result.Add(arguments);
             }
 
             return result;
+        }
+
+        private double[] ParseArgumentsFromString(string text)
+        {
+            try
+            {
+                return _argumentParser.Parse(text);
+            }
+            catch (FormatException)
+            {
+                throw new FormatException($"Строка {text} содержит некорректные символы");
+            }
         }
     }
 }
